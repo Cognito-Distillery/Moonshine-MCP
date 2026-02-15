@@ -43,7 +43,16 @@ npm run build
 
 ### Claude Desktop
 
-Add to your Claude Desktop config (`~/.config/Claude/claude_desktop_config.json`):
+Add to your Claude Desktop config:
+
+| Platform | Config Path |
+|----------|-------------|
+| **Linux** | `~/.config/Claude/claude_desktop_config.json` |
+| **macOS** | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| **Windows** | `%APPDATA%\Claude\claude_desktop_config.json` |
+
+<details>
+<summary>Linux / macOS</summary>
 
 ```json
 {
@@ -56,19 +65,28 @@ Add to your Claude Desktop config (`~/.config/Claude/claude_desktop_config.json`
 }
 ```
 
-### Claude Code
+</details>
 
-Add to your Claude Code settings (`~/.claude/settings.json`):
+<details>
+<summary>Windows</summary>
 
 ```json
 {
   "mcpServers": {
     "moonshine": {
       "command": "node",
-      "args": ["/absolute/path/to/Moonshine-MCP/dist/index.js"]
+      "args": ["C:\\absolute\\path\\to\\Moonshine-MCP\\dist\\index.js"]
     }
   }
 }
+```
+
+</details>
+
+### Claude Code
+
+```bash
+claude mcp add moonshine node /absolute/path/to/Moonshine-MCP/dist/index.js
 ```
 
 ### Other MCP Clients

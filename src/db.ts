@@ -1,5 +1,5 @@
 import Database from 'better-sqlite3';
-import { homedir } from 'os';
+import { homedir, platform } from 'os';
 import { join } from 'path';
 import { existsSync } from 'fs';
 import { logger } from './logger.js';
@@ -8,12 +8,22 @@ let db: Database.Database | null = null;
 
 function getDefaultDbPath(): string {
   const home = homedir();
-  // Linux XDG data dir
-  return join(
-    process.env.XDG_DATA_HOME || join(home, '.local', 'share'),
-    'com.moonshine.app',
-    'moonshine.db',
-  );
+  switch (platform()) {
+    case 'darwin':
+      return join(home, 'Library', 'Application Support', 'com.moonshine.app', 'moonshine.db');
+    case 'win32':
+      return join(
+        process.env.APPDATA || join(home, 'AppData', 'Roaming'),
+        'com.moonshine.app',
+        'moonshine.db',
+      );
+    default:
+      return join(
+        process.env.XDG_DATA_HOME || join(home, '.local', 'share'),
+        'com.moonshine.app',
+        'moonshine.db',
+      );
+  }
 }
 
 function resolveDbPath(): string {

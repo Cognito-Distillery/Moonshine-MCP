@@ -43,7 +43,16 @@ npm run build
 
 ### Claude Desktop
 
-Claude Desktop 설정 파일(`~/.config/Claude/claude_desktop_config.json`)에 추가:
+Claude Desktop 설정 파일에 추가:
+
+| 플랫폼 | 설정 파일 경로 |
+|--------|---------------|
+| **Linux** | `~/.config/Claude/claude_desktop_config.json` |
+| **macOS** | `~/Library/Application Support/Claude/claude_desktop_config.json` |
+| **Windows** | `%APPDATA%\Claude\claude_desktop_config.json` |
+
+<details>
+<summary>Linux / macOS</summary>
 
 ```json
 {
@@ -56,19 +65,28 @@ Claude Desktop 설정 파일(`~/.config/Claude/claude_desktop_config.json`)에 �
 }
 ```
 
-### Claude Code
+</details>
 
-Claude Code 설정 파일(`~/.claude/settings.json`)에 추가:
+<details>
+<summary>Windows</summary>
 
 ```json
 {
   "mcpServers": {
     "moonshine": {
       "command": "node",
-      "args": ["/절대/경로/Moonshine-MCP/dist/index.js"]
+      "args": ["C:\\절대\\경로\\Moonshine-MCP\\dist\\index.js"]
     }
   }
 }
+```
+
+</details>
+
+### Claude Code
+
+```bash
+claude mcp add moonshine node /절대/경로/Moonshine-MCP/dist/index.js
 ```
 
 ### 기타 MCP 클라이언트
