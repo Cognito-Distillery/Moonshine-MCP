@@ -28,17 +28,6 @@ It reads the SQLite database file directly, so **Moonshine does not need to be r
 
 ---
 
-## Installation
-
-```bash
-git clone https://github.com/Cognito-Distillery/Moonshine-MCP.git
-cd Moonshine-MCP
-npm install
-npm run build
-```
-
----
-
 ## Setup
 
 ### Claude Desktop
@@ -51,42 +40,21 @@ Add to your Claude Desktop config:
 | **macOS** | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | **Windows** | `%APPDATA%\Claude\claude_desktop_config.json` |
 
-<details>
-<summary>Linux / macOS</summary>
-
 ```json
 {
   "mcpServers": {
     "moonshine": {
-      "command": "node",
-      "args": ["/absolute/path/to/Moonshine-MCP/dist/index.js"]
+      "command": "npx",
+      "args": ["@cognito-distillery/moonshine-mcp"]
     }
   }
 }
 ```
-
-</details>
-
-<details>
-<summary>Windows</summary>
-
-```json
-{
-  "mcpServers": {
-    "moonshine": {
-      "command": "node",
-      "args": ["C:\\absolute\\path\\to\\Moonshine-MCP\\dist\\index.js"]
-    }
-  }
-}
-```
-
-</details>
 
 ### Claude Code
 
 ```bash
-claude mcp add moonshine node /absolute/path/to/Moonshine-MCP/dist/index.js
+claude mcp add moonshine -- npx @cognito-distillery/moonshine-mcp
 ```
 
 ### Other MCP Clients
@@ -94,7 +62,7 @@ claude mcp add moonshine node /absolute/path/to/Moonshine-MCP/dist/index.js
 Any MCP-compatible client can connect via **stdio transport**:
 
 ```bash
-node /absolute/path/to/Moonshine-MCP/dist/index.js
+npx @cognito-distillery/moonshine-mcp
 ```
 
 ---
@@ -115,8 +83,8 @@ Override with the `MOONSHINE_DB_PATH` environment variable if needed:
 {
   "mcpServers": {
     "moonshine": {
-      "command": "node",
-      "args": ["/absolute/path/to/Moonshine-MCP/dist/index.js"],
+      "command": "npx",
+      "args": ["@cognito-distillery/moonshine-mcp"],
       "env": {
         "MOONSHINE_DB_PATH": "/custom/path/to/moonshine.db"
       }

@@ -28,17 +28,6 @@ SQLite 파일을 직접 읽기 때문에 **Moonshine 앱이 실행 중이지 않
 
 ---
 
-## 설치
-
-```bash
-git clone https://github.com/Cognito-Distillery/Moonshine-MCP.git
-cd Moonshine-MCP
-npm install
-npm run build
-```
-
----
-
 ## 설정
 
 ### Claude Desktop
@@ -51,42 +40,21 @@ Claude Desktop 설정 파일에 추가:
 | **macOS** | `~/Library/Application Support/Claude/claude_desktop_config.json` |
 | **Windows** | `%APPDATA%\Claude\claude_desktop_config.json` |
 
-<details>
-<summary>Linux / macOS</summary>
-
 ```json
 {
   "mcpServers": {
     "moonshine": {
-      "command": "node",
-      "args": ["/절대/경로/Moonshine-MCP/dist/index.js"]
+      "command": "npx",
+      "args": ["@cognito-distillery/moonshine-mcp"]
     }
   }
 }
 ```
-
-</details>
-
-<details>
-<summary>Windows</summary>
-
-```json
-{
-  "mcpServers": {
-    "moonshine": {
-      "command": "node",
-      "args": ["C:\\절대\\경로\\Moonshine-MCP\\dist\\index.js"]
-    }
-  }
-}
-```
-
-</details>
 
 ### Claude Code
 
 ```bash
-claude mcp add moonshine node /절대/경로/Moonshine-MCP/dist/index.js
+claude mcp add moonshine -- npx @cognito-distillery/moonshine-mcp
 ```
 
 ### 기타 MCP 클라이언트
@@ -94,7 +62,7 @@ claude mcp add moonshine node /절대/경로/Moonshine-MCP/dist/index.js
 MCP 호환 클라이언트라면 **stdio 전송**으로 연결:
 
 ```bash
-node /절대/경로/Moonshine-MCP/dist/index.js
+npx @cognito-distillery/moonshine-mcp
 ```
 
 ---
@@ -115,8 +83,8 @@ node /절대/경로/Moonshine-MCP/dist/index.js
 {
   "mcpServers": {
     "moonshine": {
-      "command": "node",
-      "args": ["/절대/경로/Moonshine-MCP/dist/index.js"],
+      "command": "npx",
+      "args": ["@cognito-distillery/moonshine-mcp"],
       "env": {
         "MOONSHINE_DB_PATH": "/커스텀/경로/moonshine.db"
       }
